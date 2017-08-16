@@ -1,5 +1,5 @@
 
-FROM npm:latest
+FROM node:latest
 
 
 ENV RUN_MODE="prod" \
@@ -8,6 +8,9 @@ ENV RUN_MODE="prod" \
     NPM_DEPS="" \
     SERVER_ROOT="/var/www/html" \
     SERVER_PORT=80
+
+# Install http-server
+RUN /usr/local/bin/npm install -g http-server
 
 # Copy configuration to guest container
 ADD ./docker_conf /tmp/conf
