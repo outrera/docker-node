@@ -1,13 +1,23 @@
 
-FROM php:7.1
+FROM npm:latest
 
-WORKDIR /var/www/html
 
-# Install node and npm
-ENV PATH=/usr/local/etc/nodejs/bin:$PATH
+ENV RUN_MODE="prod" \
+    RUN_NPM_WATCH=0 \
+    NPM_UPDATE=0 \
+    NPM_DEPS="" \
+    SERVER_ROOT="/var/www/html" \
+    SERVER_PORT=80
 
-ADD https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.xz /tmp
-RUN mv /tmp/node-v8.2.1-linux-x64 /usr/local/etc/nodejs; \
-    ln -s /usr/local/etc/nodejs/bin/node /usr/local/bin/node; \
-    ln -s /usr/local/etc/nodejs/bin/npm /usr/local/bin/npm; \
-    if [ ! -f "./package.json" ]; then npm init -y; fi
+# Copy configuration to guest container
+ADD ./docker_conf /tmp/conf
+RUN chmod +x /tmp/conf/entrypoint.sh
+
+# Expose $SERVER_PORT port
+EXPOSE "$SERVER_PORT"
+
+# Set the working directory to $SERVER_ROOT
+WORKDIR "$SERVER_ROOT"
+
+
+CMD ["/tmp/conf/entrypoint.sh"]
