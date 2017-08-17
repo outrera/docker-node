@@ -30,5 +30,5 @@ fi
 
 # Run simple php
 echo "* Almost ready, starting node http-server"
-mkdir -p /var/www/html/public
+mkdir -p $SERVER_ROOT/public
 exec http-server -p $SERVER_PORT

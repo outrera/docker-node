@@ -17,10 +17,10 @@ ADD ./docker_conf /tmp/conf
 RUN chmod +x /tmp/conf/entrypoint.sh
 
 # Expose $SERVER_PORT port
-EXPOSE "$SERVER_PORT"
+EXPOSE $SERVER_PORT
 
 # Set the working directory to $SERVER_ROOT
-WORKDIR "$SERVER_ROOT"
+WORKDIR $SERVER_ROOT
 
 
 CMD ["/tmp/conf/entrypoint.sh"]
