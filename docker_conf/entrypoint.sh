@@ -9,21 +9,13 @@ else
 fi
 
 
-## Install/Update npm packages
+## Install/Update node packages
 if [ -f /var/www/html/package.json ]; then
-    if [ ! -f /var/www/html/package-lock.json ]; then
-        echo "* Downloading npm packages"
-        /usr/local/bin/npm install --save $NPM_DEPS
-    elif [ $NPM_UPDATE == 1 ]; then
-        echo "* Updating npm packages"
-        /usr/local/bin/npm update
-    fi
-
     # Run npm based on run mode
     if [ $RUN_MODE == "prod" -o $RUN_MODE == "production" ]; then
         /usr/local/bin/npm run prod
     elif [ $RUN_NPM_WATCH == 1 ]; then
-        /usr/local/bin/npm run watch &
+        /usr/local/bin/npm run watch-poll &
     fi
 fi
 
