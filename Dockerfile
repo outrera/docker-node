@@ -3,9 +3,9 @@ FROM node:latest
 
 
 ENV RUN_MODE="prod" \
-    RUN_NPM_WATCH=0 \
     SERVER_ROOT="/var/www/html" \
-    SERVER_PORT=80
+    SERVER_PORT=80 \
+    PUBLIC_FOLDER=public
 
 # Install http-server
 RUN /usr/local/bin/yarn global add http-server
