@@ -11,9 +11,15 @@ fi
 
 # Node
 if [ -f /var/www/html/yarn.lock ]; then
-    # Run npm based on run mode
+    # Run project build
     if [ $RUN_MODE == "prod" -o $RUN_MODE == "production" ]; then
-        /usr/local/bin/yarn run prod
+        echo "* Building project sources"
+        
+        if [ $USE_YARN_INSTEAD == 1 ]; then
+            /usr/local/bin/yarn run prod > /dev/null
+        else
+            /usr/local/bin/npm run prod > /dev/null
+        fi
     fi
 fi
 

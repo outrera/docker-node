@@ -3,6 +3,7 @@ FROM node:latest
 
 
 ENV RUN_MODE="prod" \
+    USE_YARN_INSTEAD=1 \
     SERVER_ROOT="/var/www/html" \
     SERVER_PORT=80 \
     PUBLIC_FOLDER=public
