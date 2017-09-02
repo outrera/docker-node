@@ -20,5 +20,6 @@ fi
 
 # Run simple php
 echo "* Almost ready, starting node http-server"
-mkdir -p $SERVER_ROOT/$PUBLIC_FOLDER
-exec http-server -p $SERVER_PORT
+PUBLIC_PATH=$SERVER_ROOT/$PUBLIC_FOLDER
+mkdir -p $PUBLIC_PATH
+exec http-server $PUBLIC_PATH -p $SERVER_PORT
